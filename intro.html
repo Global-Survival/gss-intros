@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="viewport" content="user-scalable=no,width=640" />
+    <title>GSS::INTRO</title>
+
+<link rel="stylesheet" type="text/css" href='styles/intro.css'></link>
+
+<script src='scripts/jquery.1.4.4.min.js'></script>
+
+<script type='text/javascript'>
+/* Onload: */
+function init_page() {
+  //alert('Start canvasApp');
+  setTimeout(canvasApp,333);
+}
+(function () { 
+  window.onload = init_page;
+}());
+</script>
+
+  </head>
+
+  <body>
+
+    <div id="header-canvas">
+       <canvas id='cv' width='640' height='360'>
+         <div id='main-header'>
+           <h1>GSS</h1>
+           <h3>Global 
+           <br/>Survival 
+           <br/>Systems</h3>
+           <h4>WHERE THE CANVAS AT?!!</h4>
+         </div>
+       </canvas>
+    </div>
+
+    <div id="stream">
+      <audio id="aud1" preload="auto" >
+        <source src="audio/attention.mp3" />
+        <source src="audio/attention.ogg" />
+      </audio>
+    </div>     
+    <a href="http://www.w3.org/2010/05/video/mediaevents.html" target="_blank">Media Help</a>
+
+<!--Custom canvasApp-->
+<script type='text/javascript' src='scripts/canvasIntro.js'></script>
+
+  </body>
+</html>
