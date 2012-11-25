@@ -9,7 +9,7 @@
   font-family: "Comfortaa";
   font-weight: bold;
   font-style: normal;
-  src: url("../fonts/comfortaa-bold-webfont.woff") format("woff"),
+  src: /*url("../fonts/comfortaa-bold-webfont.woff") format("woff"),*/
     url("../fonts/comfortaa-bold-webfont.ttf") format("truetype");
 }
 

@@ -1,9 +1,13 @@
 /* canvasIntro.js 
 *
-* This is the first demoscene intro created by GSS
-* Code :: Revlin John :: stylogicalmaps@gmail.com
-*
+* This is the first demoscene intro created by GSs
+* 
+*    - Code by Stylogical Maps
+*    - stymaps.universalsoldier.ca
+*    - contact: Revlin John
+*    - stylogicalmaps@gmail.com 
 */
+
 
 function canvasApp() {
 

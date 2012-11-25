@@ -1,11 +1,14 @@
 /* canvasIntro.js 
 *
 * This is the first demoscene intro created by GSs
-* Code :: Revlin John :: stylogicalmaps@gmail.com
-*
+* 
+*    - Code by Stylogical Maps
+*    - stymaps.universalsoldier.ca
+*    - contact: Revlin John
+*    - stylogicalmaps@gmail.com 
 */
 
-/* Debugger Function */
+  /* Debugger Function */
   Debugger = function Debugger() {};
   Debugger.log = function (message) {
     try {
@@ -20,77 +23,6 @@
     var t = new Date();
     return t.getTime();
   };
-
-
-  /* Audio Tracker: */
-  var atrack = {
-    A : {},
-    B : {},
-    rtime : rtime,
-    stime : 0,
-    looptime : (14.6999999999999 * 1000),
-    play : atPlayer
-  };
-
-  /* Audio Tracker play function */
-  function atPlayer() {
-
-    /* Get element, clone, insert clone into doc */
-    if (typeof this.A.id === 'undefined') {
-      this.A = document.getElementById('aud1');
-      this.B = this.A.cloneNode(true);
-      this.B.id = 'aud2';
-      document.getElementById('stream').appendChild(this.B); 
-      this.A.addEventListener('ended', function(){ 
-        this.currentTime = 0;
-        this.pause();
-      }, false);
-      this.B.addEventListener('ended', function(){ 
-        this.currentTime = 0;
-        this.pause();
-      }, false);
-    }
-
-    if (typeof this.atime === 'undefined' && this.A.readyState > 1 && this.B.readyState > 1) {
-      this.atime = this.rtime;
-      this.stime = this.atime();
-      this.A.currentTime = 0.1;
-      this.B.currentTime = 0.1;
-
-      this.play = function() {
-        var sp = atrack.atime() - atrack.stime; 
-        var A = atrack.A;
-        var B = atrack.B;
-        var lp = atrack.looptime;
-        if (B.currentTime === 0) B.pause();
-        if (A.currentTime === 0) A.pause();
-        if (A.paused === true) {
-          Debugger.log('B time: '+ B.currentTime +' : '+ sp);
-          if ( sp > lp ) {
-            B.currentTime = 0.01;
-            A.currentTime = 0.01;
-            A.play();
-            atrack.stime = atrack.atime();
-            B.pause();
-          }
-        } else {
-          Debugger.log('A time: '+ A.currentTime +' : '+ sp);
-          if ( sp > lp ){
-            A.currentTime = 0.01;
-            B.currentTime = 0.01;
-            B.play(); 
-            atrack.stime = atrack.atime();
-            A.pause();
-          }
-        }
-      };
-
-      setTimeout(this.A.play(), 33);
-      aplayLoop = setInterval(this.play, 33);
-      Debugger.log('Atrack playing');
-    } else Debugger.log('readyState is '+ this.B.readyState);
-  };
-
 
 var canvasApp = function canvasApp() {
 
@@ -126,31 +58,33 @@ var canvasApp = function canvasApp() {
   /* Trignometric constants */
   var PIm2 = Math.PI*2;
 
-/* GSS Emblem from SVG:
-<svg xmlns="http://www.w3.org/2000/svg">
-  <linearGradient id='g' gradientTransform='rotate(90, 0.5, 0.5)'>
-    <stop offset='0.4' stop-color='#12f' />
-    <stop offset='0.5' stop-color='#2f2' />
-  </linearGradient>
-  <linearGradient id='s' gradientTransform='rotate(90, 0.5, 0.5)'>
-    <stop offset='0.45' stop-color='#ed1' />
-    <stop offset='0.55' stop-color='#d2e' />
-  </linearGradient>
+  /* GSS Emblem from SVG:
+  <svg xmlns="http://www.w3.org/2000/svg">
+    <linearGradient id='g' gradientTransform='rotate(90, 0.5, 0.5)'>
+      <stop offset='0.4' stop-color='#12f' />
+      <stop offset='0.5' stop-color='#2f2' />
+    </linearGradient>
+    <linearGradient id='s' gradientTransform='rotate(90, 0.5, 0.5)'>
+      <stop offset='0.45' stop-color='#ed1' />
+      <stop offset='0.55' stop-color='#d2e' />
+    </linearGradient>
 
-  <!-- path d='M 120,70 L 120,16 L 8,16 L 8,72 L 8,128 L 120,128 L 120,72 L 92,72' stroke='#000' fill='none' / -->
-  <path d='M 120,68 C 120,0 8,0 8,72 C 8,144 120,144 120,72 L 92,72' stroke-width='4' stroke='url(#g)' fill='none' /> 
+    <!-- path d='M 120,70 L 120,16 L 8,16 L 8,72 L 8,128 L 120,128 L 120,72 L 92,72' stroke='#000' fill='none' / -->
+    <path d='M 120,68 C 120,0 8,0 8,72 C 8,144 120,144 120,72 L 92,72' stroke-width='4' stroke='url(#g)' fill='none' /> 
 
-  <!-- path d='M 72,68 L 92,44 L 78,30 L 64,16 L 50,30 L 36,44 L 50,58 L 64,72 L 78,86 L 92,100 L 78,114 L 64, 128 L 50,114 L 36,100 L 56,76' stroke='#000' fill='none' / -->
-  <path d='M 72,68 Q 96,44 78,30 Q 64,20 50,30 Q 32,44 50,58 Q 64,72 78,86 Q 96,100 78,114 Q 64, 124 50,114 Q 32,100 56,76' stroke-width='4' stroke='url(#s)' fill='none'/>
-</svg> */
+    <!-- path d='M 72,68 L 92,44 L 78,30 L 64,16 L 50,30 L 36,44 L 50,58 L 64,72 L 78,86 L 92,100 L 78,114 L 64, 128 L 50,114 L 36,100 L 56,76' stroke='#000' fill='none' / -->
+    <path d='M 72,68 Q 96,44 78,30 Q 64,20 50,30 Q 32,44 50,58 Q 64,72 78,86 Q 96,100 78,114 Q 64, 124 50,114 Q 32,100 56,76' stroke-width='4' stroke='url(#s)' fill='none'/>
+  </svg> */
   /* GSS Title screen */
   var gss = {
     drawScreen : function  (w, h) {
       if (typeof this.p === 'undefined') {
         this.p = ftime;
-        this.h1 = [['Global'], 
-                   ['Survival','Support','Self','Safety','Satisfaction','Sufficiency','Surveillance','Sousveillance','Subsistance','Sustinance'], 
-                   ['System','Software','Systems','Sufficiency','Society','Sanity','Spontanaeity']];
+        this.h1 = [
+          ['Global'], 
+          ['Survival'], 
+          ['system','software','systems','sufficiency','society','sanity','spontanaeity']
+        ];
         this.w = 256;
         this.h = 144;
         this.color = '#12f';
@@ -319,7 +253,7 @@ var canvasApp = function canvasApp() {
           ctx.globalAlpha=1.0;
           ctx.clearRect(0,0,w,h);
         }
-        ts.drawScreen(w, h, 'drawTitle', ['G','  ','S',' ','S'], 'GSS Presents');
+        ts.drawScreen(w, h, 'drawTitle', ['G','  ','S',' ','s'], 'GSs Presents');
         ctx.drawImage(ts.c.canvas, 0, 0);
       } 
 
@@ -373,7 +307,7 @@ var canvasApp = function canvasApp() {
           ctx.clearRect(0,0,w,h);
         }
         if (typeof t2.p !== 'number') t2 = {drawScreen : drawTitle}; 
-        t2.drawScreen(w, h, 'drawTitle3', [':GSS.'], '::Gss. @Netention.Org::');
+        t2.drawScreen(w, h, 'drawTitle3', [':GSs'], '::GSs @Netention.Org::');
         ctx.drawImage(t2.c.canvas, 0, 0);
         if ('ontouchmove' in document.createElement('div'))  {
           cv.bind('touchstart', function(e){
@@ -398,11 +332,6 @@ var canvasApp = function canvasApp() {
     if (ftime == 'undefined') {
       ftime = 0;
     }
-    
-    /* Check audio state */
-   if (typeof atrack.atime === 'undefined') {  
-     atrack.play();
-   }
        
   };
 
