@@ -349,7 +349,7 @@ var canvasApp = function canvasApp() {
   var mouseHit = function mouseHit(event) {
     mouse_x = (event.clientX - cv_pos.left + doc.scrollLeft()) * cv_w;
     mouse_y = (event.clientY - cv_pos.top + doc.scrollTop()) * cv_h;
-    Debugger.log('mouse coords captured');
+    //Debugger.log('mouse coords captured');
   }
 
   /* Initialize loops */

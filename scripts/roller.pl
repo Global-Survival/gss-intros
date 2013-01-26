@@ -20,7 +20,6 @@ use strict;
 #Required Perl modules:
 use Fcntl qw(:flock SEEK_END);
 use MIME::Base64;
-use MIME::Base64::URLSafe;
 use Encode qw(encode);
 
 #subroutines for using flock on data files
