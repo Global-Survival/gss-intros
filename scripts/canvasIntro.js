@@ -1,28 +1,18 @@
-/* canvasIntro.js 
-*
-* This is the first demoscene intro created by GSs
-* 
-*    - Code by Stylogical Maps
-*    - stymaps.universalsoldier.ca
-*    - contact: Revlin John
-*    - stylogicalmaps@gmail.com 
-*/
+/* Debugger Function */
+Debugger = function Debugger() {};
+Debugger.log = function (message) {
+	try {
+	  console.log(message); 
+	} catch (e) {
+	  //alert(message);
+	}
+};
 
-  /* Debugger Function */
-  Debugger = function Debugger() {};
-  Debugger.log = function (message) {
-    try {
-      console.log(message); 
-    } catch (e) {
-      //alert(message);
-    }
-  };
-
-  /* Get time in milliseconds */
-  var rtime = function rtime() {
-    var t = new Date();
-    return t.getTime();
-  };
+/* Get time in milliseconds */
+var rtime = function rtime() {
+var t = new Date();
+	return t.getTime();
+};
 
 var canvasApp = function canvasApp() {
 
@@ -192,7 +182,7 @@ var canvasApp = function canvasApp() {
               c.strokeStyle = this.fc;
               c.globalAlpha = 1.0;
               for(var i=z=(this.h1.length-1); (i+1)>0; i--) {
-                var cx = this.hx[this.p]+(i*36);
+                var cx = this.hx[this.p]+(i*36) - 100;
                 c.font = 'bold '+ this.f[this.p] +'px Comfortaa';
                 //c.fillText(this.h1[i], cx, this.hy);
                 c.strokeText(this.h1[i], cx, this.f[this.p]);
@@ -270,9 +260,13 @@ var canvasApp = function canvasApp() {
       }
 
       /* Draw secondary Titles */
-      var phrase = ['::Are ','You ','Paying::','Netention???'];
+      var phrase = [
+		  'Create Wealth', 
+		  'Distribute Equity',
+		  'Embrace Reality'
+	  ];
       if (typeof t2.p !== 'number') for (var i=0, z=phrase.length; i<z; i++) {
-        if (ftime > 550 && ftime < 640) ctx.clearRect(0,0,w,h);
+        if (ftime > 550) ctx.clearRect(0,0,w,h);
         if (typeof t2[i] !== 'object') t2.push({drawScreen : drawTitle}); 
         if (ftime > (264+i*86) && ftime < (380+i*86)) {
           if (ftime > 400) { 
@@ -284,43 +278,6 @@ var canvasApp = function canvasApp() {
         }
       }
 
-      /*Draw GSS Title again*/
-      if (ftime > 640 && ftime < 768) {
-        if (ftime < 680) {
-          ctx.globalAlpha=0.1;
-        } else if (ftime > 752) {
-          ctx.globalAlpha = 256/ftime;
-        } else {
-          ctx.globalAlpha=1.0;
-          ctx.clearRect(0,0,w,h);
-        }
-        gss.drawScreen(w, h);
-        ctx.drawImage(gss.c.canvas, 0, 0, w, h);
-      }
-
-      /* Draw url Title */
-      if (ftime > 768) {
-        if (ftime < 680) {
-          ctx.globalAlpha=0.1;
-        } else {
-          ctx.globalAlpha=1.0;
-          ctx.clearRect(0,0,w,h);
-        }
-        if (typeof t2.p !== 'number') t2 = {drawScreen : drawTitle}; 
-        t2.drawScreen(w, h, 'drawTitle3', [':GSs'], '::GSs @Netention.Org::');
-        ctx.drawImage(t2.c.canvas, 0, 0);
-        if ('ontouchmove' in document.createElement('div'))  {
-          cv.bind('touchstart', function(e){
-            e.preventDefault();
-            window.location.replace("http://netention.org");
-          });
-        } else {
-          cv.bind('mousedown', function(e) {
-            window.location.replace("http://netention.org");  
-          });
-        }
-      }
-
     } else {
       Debugger.log("DROP FRAME");
     }
@@ -329,9 +286,8 @@ var canvasApp = function canvasApp() {
     ptime = ctime;
 
     ftime += 1;
-    if (ftime == 'undefined') {
-      ftime = 0;
-    }
+    if (ftime == 'undefined') ftime = 0;
+    if( ftime > 600 ) ftime = 100;
        
   };
 
