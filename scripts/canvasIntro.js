@@ -17,15 +17,15 @@ var t = new Date();
 var canvasApp = function canvasApp() {
 
   var frate=66,
-         fdelay=frate*2, 
-         ftime=0,
-         ptime=rtime(), 
-         no_selection=true, 
-         mouse_down=false, 
-         mouse_up=true, 
-         mouse_x=0, 
-         mouse_y=0, 
-         hXY=[0,0,0];
+	 fdelay=frate*2, 
+	 ftime=0,
+	 ptime=rtime(), 
+	 no_selection=true, 
+	 mouse_down=false, 
+	 mouse_up=true, 
+	 mouse_x=0, 
+	 mouse_y=0, 
+	 hXY=[0,0,0];
 
   /* Get canvas properties */
   var win = $(window),
@@ -67,7 +67,10 @@ var canvasApp = function canvasApp() {
   </svg> */
   /* GSS Title screen */
   var gss = {
-    drawScreen : function  (w, h) {
+	w: 256,
+	h: 144,
+	c: $("<canvas></canvas>").attr({width:this.w, height:this.h})[0].getContext('2d'),
+    drawScreen: function(w, h) {
       if (typeof this.p === 'undefined') {
         this.p = ftime;
         this.h1 = [
@@ -75,10 +78,7 @@ var canvasApp = function canvasApp() {
           ['Survival'], 
           ['system','software','systems','sufficiency','society','sanity','spontanaeity']
         ];
-        this.w = 256;
-        this.h = 144;
         this.color = '#12f';
-        this.c = $("<canvas></canvas>").attr({width:this.w, height:this.h})[0].getContext('2d');
         this.g_grad = this.c.createLinearGradient(0,0,0,this.h);
         this.g_grad.addColorStop(0.4, '#12f');
         this.g_grad.addColorStop(0.5, '#2f2');
@@ -90,7 +90,7 @@ var canvasApp = function canvasApp() {
         this.drawScreen = function drawScreen(w,h) {
           var c = this.c;
           c.globalAlpha = 1.0;
-          c.clearRect(0, 0, this.w, this.h);
+          c.clearRect(0, 0, c.canvas.width, c.canvas.height);
           c.save();
 
           var cyc = this.p%45-15;
@@ -132,7 +132,7 @@ var canvasApp = function canvasApp() {
           c.stroke();
 
           c.restore();
-          c.font = 'small-caps bold 28px Comfortaa';
+          c.font = 'small-caps bold 24px Comfortaa';
           if (this.p > 2) {
             var h1x = this.w/2 + 4;
             c.fillStyle = this.color;
@@ -161,6 +161,9 @@ var canvasApp = function canvasApp() {
           this.f = []; 
           this.fc = '#23f';
           this.c = $("<canvas></canvas>").attr({width:w, height:h})[0].getContext('2d');
+		  this.c.globalAlpha = 1.0;
+          this.c.fillStyle = '#000';
+          this.c.fillRect(0, 0, w, h);
           this.c.beginPath();
           this.c.moveTo(0, 0);
           this.c.lineTo(w, 0);
@@ -188,7 +191,7 @@ var canvasApp = function canvasApp() {
                 c.strokeText(this.h1[i], cx, this.f[this.p]);
               }
             } else {
-                if (this.p < 92) {
+                if( 64 < this.p && this.p < 92 ) {
                   c.globalAlpha = 0.1;
                   c.fillStyle = '#000';
                   c.fillRect(0, 0, w, h);
@@ -236,7 +239,8 @@ var canvasApp = function canvasApp() {
       ctx.globalAlpha = 1.0;
 
       /* Draw first Title */
-      if (ftime < 100) {
+      if (ftime%600 < 100) {
+		t2 = [];
         if (ftime > 96) {
           ctx.globalAlpha = 32/ftime;
         } else {
@@ -248,15 +252,15 @@ var canvasApp = function canvasApp() {
       } 
 
       /*Draw GSS Title */
-      if (ftime > 96 && ftime < 268) {
-        if (ftime < 100) {
+      if (ftime%600 > 96 && ftime%600 < 268) {
+        if (ftime%600 < 100) {
           ctx.globalAlpha=0.25;
         } else {
           ctx.globalAlpha=1.0;
           ctx.clearRect(0,0,w,h);
         }
         gss.drawScreen(w, h);
-        ctx.drawImage(gss.c.canvas, 0, 0, w, h);
+        ctx.drawImage(gss.c.canvas, (w/2 - gss.c.canvas.width/2), (h/2 - gss.c.canvas.height/2));
       }
 
       /* Draw secondary Titles */
@@ -266,11 +270,11 @@ var canvasApp = function canvasApp() {
 		  'Embrace Reality'
 	  ];
       if (typeof t2.p !== 'number') for (var i=0, z=phrase.length; i<z; i++) {
-        if (ftime > 550) ctx.clearRect(0,0,w,h);
+        if (ftime%600 > 550) ctx.clearRect(0,0,w,h);
         if (typeof t2[i] !== 'object') t2.push({drawScreen : drawTitle}); 
-        if (ftime > (264+i*86) && ftime < (380+i*86)) {
-          if (ftime > 400) { 
-            var a = (400+12*i)/ftime;
+        if (ftime%600 > (264+i*86) && ftime%600 < (380+i*86)) {
+          if (ftime%600 > 400) { 
+            var a = (400+12*i)/(ftime%600);
             ctx.globalAlpha = (a < 1) ? a : 1.0;
           }
           t2[i].drawScreen(w, h, 'drawTitle2.'+i, [phrase[i]], phrase[i]);
@@ -287,7 +291,6 @@ var canvasApp = function canvasApp() {
 
     ftime += 1;
     if (ftime == 'undefined') ftime = 0;
-    if( ftime > 600 ) ftime = 100;
        
   };
 
