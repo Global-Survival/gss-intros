@@ -1,7 +1,7 @@
 /* REV EDIT - CSS adds
 *
 * File: intro.css
-* Note: stylogicalmaps default style sheet 
+* Note: stylogicalmaps default style sheet
 *
 */
 
@@ -19,12 +19,13 @@ body {
   width: 100%;
   height: 100%;
   font-family: Comfortaa Verdana Arial;
-  font-size: 11px; 
-  text-decoration: none; 
-  font-weight: normal; 
-  line-height: normal; 
+  font-size: 11px;
+  text-decoration: none;
+  font-weight: normal;
+  line-height: normal;
+  overflow:hidden;
 }
-		 
+
 a          { color: #3399cc; }
 a:link     { color: #3399cc; text-decoration: underline; }
 a:visited  { color: #3399cc; text-decoration: underline; }
@@ -33,8 +34,7 @@ a:hover    { color: #3399cc; text-decoration: underline; }
 
 div#header-canvas {
   display: block;
-  width: 640px;
-  height: 360px;
+  width: 100%;
   height-min: 300px;
   margin: 8px auto 0px auto;
   overflow:hidden;
@@ -42,15 +42,14 @@ div#header-canvas {
 
 canvas#cv {
   display: block;
-  width: 640px;
-  height: 360px;
+  width: 100%;
   position:relative;
   margin-left: 0;
 }
 
 #main {
   display: block;
-  width: 644px;
+  width: 100%;
   overflow: hidden;
   position: relative;
   margin-left: 60px;

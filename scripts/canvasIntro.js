@@ -2,7 +2,7 @@
 Debugger = function Debugger() {};
 Debugger.log = function (message) {
 	try {
-	  console.log(message); 
+	  console.log(message);
 	} catch (e) {
 	  //alert(message);
 	}
@@ -17,14 +17,14 @@ var t = new Date();
 var canvasApp = function canvasApp() {
 
   var frate=66,
-	 fdelay=frate*2, 
+	 fdelay=frate*2,
 	 ftime=0,
-	 ptime=rtime(), 
-	 no_selection=true, 
-	 mouse_down=false, 
-	 mouse_up=true, 
-	 mouse_x=0, 
-	 mouse_y=0, 
+	 ptime=rtime(),
+	 no_selection=true,
+	 mouse_down=false,
+	 mouse_up=true,
+	 mouse_x=0,
+	 mouse_y=0,
 	 hXY=[0,0,0];
 
   /* Get canvas properties */
@@ -60,7 +60,7 @@ var canvasApp = function canvasApp() {
     </linearGradient>
 
     <!-- path d='M 120,70 L 120,16 L 8,16 L 8,72 L 8,128 L 120,128 L 120,72 L 92,72' stroke='#000' fill='none' / -->
-    <path d='M 120,68 C 120,0 8,0 8,72 C 8,144 120,144 120,72 L 92,72' stroke-width='4' stroke='url(#g)' fill='none' /> 
+    <path d='M 120,68 C 120,0 8,0 8,72 C 8,144 120,144 120,72 L 92,72' stroke-width='4' stroke='url(#g)' fill='none' />
 
     <!-- path d='M 72,68 L 92,44 L 78,30 L 64,16 L 50,30 L 36,44 L 50,58 L 64,72 L 78,86 L 92,100 L 78,114 L 64, 128 L 50,114 L 36,100 L 56,76' stroke='#000' fill='none' / -->
     <path d='M 72,68 Q 96,44 78,30 Q 64,20 50,30 Q 32,44 50,58 Q 64,72 78,86 Q 96,100 78,114 Q 64, 124 50,114 Q 32,100 56,76' stroke-width='4' stroke='url(#s)' fill='none'/>
@@ -74,11 +74,11 @@ var canvasApp = function canvasApp() {
       if (typeof this.p === 'undefined') {
         this.p = ftime;
         this.h1 = [
-          ['Global'], 
-          ['Survival'], 
+          ['Global'],
+          ['Survival'],
           ['system','software','systems','sufficiency','society','sanity','spontanaeity']
         ];
-        this.color = '#12f';
+        this.color = '#3df';
         this.g_grad = this.c.createLinearGradient(0,0,0,this.h);
         this.g_grad.addColorStop(0.4, '#12f');
         this.g_grad.addColorStop(0.5, '#2f2');
@@ -104,8 +104,8 @@ var canvasApp = function canvasApp() {
             c.lineWidth=8;
             c.strokeStyle='#fff';
             //c.stroke();
-            c.clip(); 
-          }  
+            c.clip();
+          }
           c.beginPath();
           c.moveTo(120,68);
           c.bezierCurveTo(120,0, 8,0, 8,72);
@@ -114,9 +114,9 @@ var canvasApp = function canvasApp() {
           c.lineWidth=4;
           c.strokeStyle=this.g_grad;
           c.stroke();
-          c.beginPath(); 
+          c.beginPath();
           c.moveTo(72,68);
-          c.quadraticCurveTo(96,44, 78,30); 
+          c.quadraticCurveTo(96,44, 78,30);
           c.quadraticCurveTo(64,20, 50,30);
           c.quadraticCurveTo(32,44, 50,58);
           if ((9>cyc) && (cyc>-1)) {
@@ -140,8 +140,8 @@ var canvasApp = function canvasApp() {
               //c.strokeText('TEST', 100, 100);
               c.fillText(this.h1[i][(this.p%this.h1[i].length)], h1x, 52+(i*32));
             }
-          } 
-          this.p = ftime;       
+          }
+          this.p = ftime;
         };
         Debugger.log('drawGSS: '+ this.p +' (first run)');
       }
@@ -158,8 +158,8 @@ var canvasApp = function canvasApp() {
           this.h1 = arguments[3];
           this.hx = [];
           this.hy = h/4;
-          this.f = []; 
-          this.fc = '#23f';
+          this.f = [];
+          this.fc = '#3df';
           this.c = $("<canvas></canvas>").attr({width:w, height:h})[0].getContext('2d');
 		  this.c.globalAlpha = 1.0;
           this.c.fillStyle = '#000';
@@ -213,7 +213,7 @@ var canvasApp = function canvasApp() {
           this.f.push(( .038*(i*i) - 8.42*i + 512 ));
         }
         Debugger.log(arguments[2] +': '+ this.p +' (first run)');
-      } 
+      }
     };
 
   /* Define first Title Screen */
@@ -223,14 +223,14 @@ var canvasApp = function canvasApp() {
 
   /* Define second Title Screen */
   var t2 = [];
-  
+
   /* Draw main function */
   var draw = function draw(ctx,w,h) {
     /* Timing and Frame drops */
     var ctime = rtime();
     var t = fdelay + ptime;
 
-    /* START: DRAW frames if ctime is ahead of time t 
+    /* START: DRAW frames if ctime is ahead of time t
        ELSE: DROP frames*/
     if (t > ctime) {
       //Debugger.log("Current time (ms): "+ ctime);
@@ -248,8 +248,9 @@ var canvasApp = function canvasApp() {
           ctx.clearRect(0,0,w,h);
         }
         ts.drawScreen(w, h, 'drawTitle', ['G','  ','S',' ','s'], 'GSs Presents');
+        ctx.filter = 'url(#remove-alpha)';
         ctx.drawImage(ts.c.canvas, 0, 0);
-      } 
+      }
 
       /*Draw GSS Title */
       if (ftime%600 > 96 && ftime%600 < 268) {
@@ -260,38 +261,41 @@ var canvasApp = function canvasApp() {
           ctx.clearRect(0,0,w,h);
         }
         gss.drawScreen(w, h);
+        ctx.filter = 'url(#remove-alpha)';
         ctx.drawImage(gss.c.canvas, (w/2 - gss.c.canvas.width/2), (h/2 - gss.c.canvas.height/2));
       }
 
       /* Draw secondary Titles */
       var phrase = [
-		  'Create Wealth', 
-		  'Distribute Equity',
-		  'Embrace Reality'
+		  'Play ',
+		  'For ',
+		  'Peace'
 	  ];
+      var compositePhrase = '';
       if (typeof t2.p !== 'number') for (var i=0, z=phrase.length; i<z; i++) {
+        compositePhrase = compositePhrase + ((!!phrase[i - 1]) ? phrase[i - 1] : '');
         if (ftime%600 > 550) ctx.clearRect(0,0,w,h);
-        if (typeof t2[i] !== 'object') t2.push({drawScreen : drawTitle}); 
+        if (typeof t2[i] !== 'object') t2.push({drawScreen : drawTitle});
         if (ftime%600 > (264+i*86) && ftime%600 < (380+i*86)) {
-          if (ftime%600 > 400) { 
+          if (ftime%600 > 400) {
             var a = (400+12*i)/(ftime%600);
             ctx.globalAlpha = (a < 1) ? a : 1.0;
           }
-          t2[i].drawScreen(w, h, 'drawTitle2.'+i, [phrase[i]], phrase[i]);
+          t2[i].drawScreen(w, h, 'drawTitle2.'+i, [phrase[i]], compositePhrase + phrase[i]);
           ctx.drawImage(t2[i].c.canvas, 0, 0);
         }
       }
 
     } else {
-      Debugger.log("DROP FRAME");
+      Debugger.log('DROP FRAME');
     }
     /* STOP: Drop frames */
     //Debugger.log( "Frame Rate (fps): "+ ( 1000 / (ctime-ptime) ));
     ptime = ctime;
 
     ftime += 1;
-    if (ftime == 'undefined') ftime = 0;
-       
+    if (ftime === 'undefined') ftime = 0;
+
   };
 
   var touchHit = function touchHit(event) {
@@ -318,8 +322,8 @@ var canvasApp = function canvasApp() {
     //Debugger.log("Start time: "+ ptime);
     drawLoop = setInterval(draw,frate,context,canvas.width,canvas.height);
     Debugger.log('drawLoop started');
-  } catch(e) { 
-    Debugger.log('drawLoop failed to start'); 
-  }  
+  } catch(e) {
+    Debugger.log('drawLoop failed to start');
+  }
 
 };
