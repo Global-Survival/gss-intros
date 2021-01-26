@@ -1,54 +1,54 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd" >
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-  <head>
+<head>
     <meta name="viewport" content="user-scalable=no,width=640px" />
     <title>GSS::INTRO</title>
 
-<link rel="stylesheet" type="text/css" href='styles/intro.css'></link>
+    <link rel="stylesheet" type="text/css" href='styles/intro.css'></link>
 
-<script src='scripts/jquery.1.4.4.min.js'></script>
+    <script src='scripts/jquery.1.4.4.min.js'></script>
 
-<script type='text/javascript'>
-/* Onload: */
-function init_page() {
-  //alert('Start canvasApp');
-  setTimeout(canvasApp,333);
-}
-(function () { 
-if (typeof window.addEventListener === 'function') {
-  window.addEventListener("load", init_page, false);
-} else {
-  window.onload = init_page;
-}
-}());
-</script>
+    <script type='text/javascript'>
+        /* Onload: */
+        function init_page() {
+            //alert('Start canvasApp');
+            setTimeout(canvasApp,333);
+        }
+        (function () {
+            if (typeof window.addEventListener === 'function') {
+                window.addEventListener("load", init_page, false);
+            } else {
+                window.onload = init_page;
+            }
+        }());
+    </script>
 
-  </head>
+</head>
 
-  <body>
+<body>
 
-    <div id="header-canvas">
-       <canvas id='cv' width='640' height='360'>
-         <div id='main-header'>
-           <h1>GSS</h1>
-           <h3>Global 
-           <br/>Survival 
-           <br/>Systems</h3>
-           <h4>WHERE THE CANVAS AT?!!</h4>
-         </div>
-       </canvas>
-    </div>
+<div id="header-canvas">
+    <canvas id='cv' width='640' height='360'>
+        <div id='main-header'>
+            <h1>GSS</h1>
+            <h3>Global
+                <br/>Survival
+                <br/>Systems</h3>
+            <h4>WHERE THE CANVAS AT?!!</h4>
+        </div>
+    </canvas>
+</div>
 
-    <p id="license"></p>
+<p id="license"></p>
 
-    <a href="http://www.w3.org/2010/05/video/mediaevents.html" target="_blank">Media Help</a>
-    <a href='javascript:recordGIF();'>Record a GIF</a><br />
-    <div id="stream">
-      <audio id="aud1" class="standard" preload="auto">
+<a href="http://www.w3.org/2010/05/video/mediaevents.html" target="_blank">Media Help</a>
+<a href='javascript:recordGIF();'>Record a GIF</a><br />
+<div id="stream">
+    <audio id="aud1" class="standard" preload="auto">
         <source src="" type="audio/mp3" />
         <source src="" type="audio/ogg" />
-      </audio>
-    </div>     
+    </audio>
+</div>
 
 <script type="text/javascript" src="scripts/jsgif/LZWEncoder.js"></script>
 <script type="text/javascript" src="scripts/jsgif/NeuQuant.js"></script>
@@ -58,5 +58,5 @@ if (typeof window.addEventListener === 'function') {
 <!--Custom canvasApp-->
 <script type='text/javascript' src='scripts/canvasIntro.000.js'></script>
 
-  </body>
+</body>
 </html>
